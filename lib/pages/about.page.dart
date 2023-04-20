@@ -25,7 +25,7 @@ class Sobre extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  '',
+                  'Sair',
                   style: TextStyle(fontSize: 22),
                 ),
                 SizedBox(width: 8),
