@@ -1,5 +1,4 @@
-import 'package:app_avaliacao/pages/finalization.page.dart';
-
+import '/pages/finalization.page.dart';
 import '/pages/home.page.dart';
 import 'package:flutter/material.dart';
 

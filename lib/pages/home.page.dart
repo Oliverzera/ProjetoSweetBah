@@ -53,102 +53,120 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shopping_bag),
+            onPressed: () {
+              // Adicione a ação que deseja executar quando o ícone for pressionado
+            },
+          )
+        ],
       ),
-      body: Center(
-        child: Column(
-          // foi criado uma coluna com os botões que levam o usuário para tela lincada com o botão
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              // -> depois que a tela estiver pronta, implementar a rota
-              //onPressed: () => {
-              //Navigator.push(
-              //context,
-              //MaterialPageRoute(
-              //builder: (context) => SpoonEggs(),
-              //),
-              //),
-              //},
-              onPressed: () {
-                _showDialog(context);
-              },
-              child: Text(
-                'Ovos de Colher',
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-                textAlign: TextAlign.center,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            // foi criado uma coluna com os botões que levam o usuário para tela lincada com o botão
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 30,
               ),
-              style: ElevatedButton.styleFrom(
-                  minimumSize: Size(250, 100), // Define o tamanho fixo do botão
-                  backgroundColor:
-                      Color.fromARGB(255, 255, 82, 91), // Cor de fundo do botão
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-              // -> depois que a tela estiver pronta, implementar a rota
-              //onPressed: () => {
-              //Navigator.push(
-              //context,
-              //MaterialPageRoute(
-              //builder: (context) => TruffledEggs(),
-              //),
-              //),
-              //},
-              onPressed: () {
-                _showDialog(context);
-              },
-              child: Text(
-                'Trufados',
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                  fontSize: 18,
+              InkWell(
+                // -> depois que a tela estiver pronta, implementar a rota
+                //onPressed: () => {
+                //Navigator.push(
+                //context,
+                //MaterialPageRoute(
+                //builder: (context) => SpoonEggs(),
+                //),
+                //),
+                //},
+                onTap: () {
+                  _showDialog(context);
+                  // Adicione a ação que deseja executar quando a imagem for pressionada
+                },
+                child: Column(
+                  children: [
+                    Image.asset('assets/profile-picture.png'),
+                    SizedBox(
+                        height: 0), // espaço vertical entre a imagem e o texto
+                    Text(
+                      'Ovos de Colher',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
                 ),
-                textAlign: TextAlign.center,
               ),
-              style: ElevatedButton.styleFrom(
-                  minimumSize: Size(250, 100), // Define o tamanho fixo do botão
-                  backgroundColor:
-                      Color.fromARGB(255, 255, 82, 91), // Cor de fundo do botão
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-              onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MiniEggsScreen(),
+              SizedBox(
+                height: 30,
+              ),
+              InkWell(
+                // -> depois que a tela estiver pronta, implementar a rota
+                //onPressed: () => {
+                //Navigator.push(
+                //context,
+                //MaterialPageRoute(
+                //builder: (context) => TruffledEggs(),
+                //),
+                //),
+                //},
+                onTap: () {
+                  _showDialog(context);
+                  // Adicione a ação que deseja executar quando a imagem for pressionada
+                },
+                child: Column(
+                  children: [
+                    Image.asset('assets/exemplo.png'),
+                    SizedBox(
+                        height: 0), // espaço vertical entre a imagem e o texto
+                    Text(
+                      'Trufados',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              InkWell(
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MiniEggsScreen(),
+                    ),
                   ),
+                },
+                child: Column(
+                  children: [
+                    Image.asset('assets/exemplo.png'),
+                    SizedBox(
+                        height: 0), // espaço vertical entre a imagem e o texto
+                    Text(
+                      'Mini Ovos',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
                 ),
-              },
-              child: Text(
-                'Mini Ovos',
-                style: TextStyle(
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-                textAlign: TextAlign.center,
               ),
-              style: ElevatedButton.styleFrom(
-                  minimumSize: Size(250, 100), // Define o tamanho fixo do botão
-                  backgroundColor:
-                      Color.fromARGB(255, 255, 82, 91), // Cor de fundo do botão
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
-          ],
+              SizedBox(
+                height: 30,
+              ),
+            ],
+          ),
         ),
       ),
     );
