@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import '/pages/login.page.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
+
+  @override
+  _SignupPageState createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  final _formKey = GlobalKey<FormState>();
+  String _password = '';
+  String _confirmPassword = '';
 
   void mensagem(BuildContext context, String msg) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -123,6 +132,43 @@ class SignupPage extends StatelessWidget {
                 ),
               ),
               style: TextStyle(fontSize: 20),
+              onChanged: (value) => _password = value,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Campo obrigatório';
+                }
+                if (value.length < 6) {
+                  return 'Senha deve conter pelo menos 6 caracteres';
+                }
+                return null;
+              },
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              keyboardType: TextInputType.text,
+              //mascara a senha
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Confirme sua senha",
+                labelStyle: TextStyle(
+                  color: Colors.black38,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                ),
+              ),
+              style: TextStyle(fontSize: 20),
+              onChanged: (value) => _confirmPassword = value,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Campo obrigatório';
+                }
+                if (value != _password) {
+                  return 'Senhas não correspondem';
+                }
+                return null;
+              },
             ),
             SizedBox(
               height: 10,

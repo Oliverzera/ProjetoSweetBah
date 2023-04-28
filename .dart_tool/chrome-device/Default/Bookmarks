@@ -1,0 +1,79 @@
+{
+   "checksum": "10bb0d30d0cf896eeb1f69555aa465e4",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13327176126020898",
+            "date_last_used": "0",
+            "guid": "b0590e90-bb51-4585-ba4f-33bffd6193cb",
+            "id": "7",
+            "name": "Amazon",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/amazon.html?utm_source=win32&utm_medium=favorite"
+         }, {
+            "date_added": "13327176126020063",
+            "date_last_used": "0",
+            "guid": "960f7428-1044-4c39-92b6-b00ef3054a22",
+            "id": "6",
+            "name": "Booking.com",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/booking.html?utm_source=win32&utm_medium=favorite"
+         }, {
+            "children": [ {
+               "date_added": "13251495485894728",
+               "date_last_used": "0",
+               "guid": "89c26bb5-ba3f-4042-9d56-94b4fa4bd16a",
+               "id": "9",
+               "name": "Acer",
+               "show_icon": false,
+               "source": "import_fre",
+               "type": "url",
+               "url": "http://www.acer.com/"
+            } ],
+            "date_added": "13327176130389075",
+            "date_last_used": "0",
+            "date_modified": "0",
+            "guid": "2b8b514b-f4d6-48e1-8eaf-833e6f8bd494",
+            "id": "8",
+            "name": "Acer",
+            "source": "import_fre",
+            "type": "folder"
+         } ],
+         "date_added": "13327176125741044",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Barra de favoritos",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13327176125741050",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Outros favoritos",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13327176125741052",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Favoritos do celular",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}

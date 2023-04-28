@@ -31,11 +31,110 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              child: Text(
+                'Nome do usuário',
+                style: TextStyle(
+                  color: Colors.white,
+                  //fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 255, 82, 91),
+              ),
+            ),
+            ListTile(
+              title: Text(
+                'Alterar foto',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                'Dados pessoais',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                'Pagamento',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                'Configurações',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                'Sobre',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+              ),
+              onTap: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Sobre(),
+                  ),
+                ),
+              },
+            ),
+            ListTile(
+              title: Text(
+                'Sair',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                ),
+              ),
+              onTap: () {
+                Navigator.popUntil(context, (route) => route.isFirst);
+              },
+            ),
+            SizedBox(
+              height: 120,
+            ),
+            ListTile(
+              title: Text(
+                "Versão 1.0",
+                style: TextStyle(
+                  color: Colors.black45,
+                  fontSize: 13,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
-        automaticallyImplyLeading:
-            false, // Definir como false para remover o ícone de voltar
         title: Text(
-          "Menu",
+          "Cardápio",
           style: TextStyle(
             color: Colors.white,
             //fontWeight: FontWeight.bold,
@@ -43,16 +142,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 255, 82, 91),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Colors.white,
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Sobre(),
-            ),
-          ),
-        ),
         actions: [
           IconButton(
             icon: Icon(Icons.shopping_bag),
@@ -87,7 +176,7 @@ class HomePage extends StatelessWidget {
                 },
                 child: Column(
                   children: [
-                    Image.asset('assets/profile-picture.png'),
+                    Image.asset('assets/exemplo.png'),
                     SizedBox(
                         height: 0), // espaço vertical entre a imagem e o texto
                     Text(

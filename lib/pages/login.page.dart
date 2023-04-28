@@ -1,16 +1,48 @@
 import '/pages/reset_password.page.dart';
 import '/pages/home.page.dart';
 import '/pages/signup.page.dart';
+import '/pages/admin.home.page.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  bool isAdmin = false;
+  bool isAdminSenha = false;
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   void mensagem(BuildContext context, String msg) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: Duration(seconds: 1),
       content: Text(msg),
     ));
+  }
+
+  void _login() {
+    if (_formKey.currentState!.validate()) {
+      if (_emailController.text == "admin@bah.com" &&
+          _passwordController.text == "123456") {
+        isAdmin = true;
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AdminHomePage()),
+        );
+      } else {
+        isAdmin = false;
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+        mensagem(context, "Acesso negado");
+      }
+    }
   }
 
   @override
@@ -49,6 +81,13 @@ class LoginPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
               ),
+              onChanged: (value) {
+                if (value == "admin@bah.com") {
+                  isAdmin = true;
+                } else {
+                  isAdmin = false;
+                }
+              },
             ),
             SizedBox(
               height: 10,
@@ -68,11 +107,17 @@ class LoginPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
               ),
+              onChanged: (value) {
+                if (value == "123456") {
+                  isAdminSenha = true;
+                } else {
+                  isAdminSenha = false;
+                }
+              },
             ),
             Container(
               height: 40,
               alignment: Alignment.centerRight,
-              //é o usado flatbutton para colocar um ícone e texto dentro do botão
               child: TextButton(
                 child: Text(
                   "Recuperar Senha",
@@ -102,7 +147,6 @@ class LoginPage extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   stops: [0.3, 1],
-                  // ignore: prefer_const_literals_to_create_immutables
                   colors: [
                     Color.fromARGB(255, 255, 82, 91),
                     Color.fromARGB(255, 255, 82, 91),
@@ -116,7 +160,6 @@ class LoginPage extends StatelessWidget {
                 child: TextButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    // ignore: prefer_const_literals_to_create_immutables
                     children: <Widget>[
                       Text(
                         "Login",
@@ -130,12 +173,24 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                   onPressed: () => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ),
-                    ),
+                    if (isAdmin)
+                      {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AdminHomePage(),
+                          ),
+                        ),
+                      }
+                    else
+                      {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        ),
+                      },
                     mensagem(context, "Acesso permito")
                   },
                 ),

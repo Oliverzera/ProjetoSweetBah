@@ -14,26 +14,6 @@ class Sobre extends StatelessWidget {
             false, // Definir como false para remover o ícone de voltar
         titleSpacing: 0,
         backgroundColor: Color.fromARGB(255, 255, 82, 91),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.popUntil(context, (route) => route.isFirst);
-            },
-            style: TextButton.styleFrom(
-              primary: Colors.white, // Cor do texto
-            ),
-            child: Row(
-              children: [
-                Text(
-                  'Sair',
-                  style: TextStyle(fontSize: 22),
-                ),
-                SizedBox(width: 8),
-                Icon(Icons.logout),
-              ],
-            ),
-          ),
-        ],
       ),
       body: GestureDetector(
         onTap: () {
