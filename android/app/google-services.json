@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "614274060007",
+    "project_id": "app-avaliacao-sweetbah",
+    "storage_bucket": "app-avaliacao-sweetbah.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614274060007:android:8b802d585505abb87a5c42",
+        "android_client_info": {
+          "package_name": "com.example.app_avaliacao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614274060007-2f1oblr1v9dvk6j2dek29prs0k57fvde.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH0Qvst52JjEQa5JJAOxOSRrcpMsHHBO4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614274060007-2f1oblr1v9dvk6j2dek29prs0k57fvde.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "614274060007-n4cbg97mp9d79o3pgol8calgsrk95bkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.appAvaliacao"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

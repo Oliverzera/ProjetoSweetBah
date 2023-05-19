@@ -5,6 +5,7 @@ import '/pages/payment.page.dart';
 class SpoonEggs extends StatelessWidget {
   const SpoonEggs({super.key});
 
+  //tela dos ovos de colher
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,14 +15,14 @@ class SpoonEggs extends StatelessWidget {
         title: Text(
           "Ovos de Colher",
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 26,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 255, 73, 82),
+        backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Colors.white,
+          color: Colors.black,
           onPressed: () => Navigator.pop(context),
         ),
       ),

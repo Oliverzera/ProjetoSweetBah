@@ -2,11 +2,13 @@ import '/pages/about.page.dart';
 import '/pages/spoon_eggs.page.dart';
 import '/pages/truffled_eggs.page.dart';
 import '/pages/mini_eggs.page.dart';
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  //pop-up que é mostrado quando o usuário clica em uma funcionalidade qeu ainda não foi incluída no app
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -35,8 +37,10 @@ class HomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
+            //barra que fica exposta na tela quando o usuário clica no ícone do menu
             DrawerHeader(
               child: Text(
+                //nome do usuário no top do drawer acompanhado de uma foto
                 'Nome do usuário',
                 style: TextStyle(
                   color: Colors.white,
@@ -48,7 +52,9 @@ class HomePage extends StatelessWidget {
                 color: Color.fromARGB(255, 255, 82, 91),
               ),
             ),
+            //alterar foto
             ListTile(
+              leading: Icon(Icons.camera_alt),
               title: Text(
                 'Alterar foto',
                 style: TextStyle(
@@ -58,7 +64,9 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () {},
             ),
+            //dados pessoais
             ListTile(
+              leading: Icon(Icons.person),
               title: Text(
                 'Dados pessoais',
                 style: TextStyle(
@@ -68,7 +76,9 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () {},
             ),
+            //cartões para pagamento e outras formas de pagamento
             ListTile(
+              leading: Icon(Icons.payment),
               title: Text(
                 'Pagamento',
                 style: TextStyle(
@@ -78,7 +88,9 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () {},
             ),
+            //configurações gerais do app
             ListTile(
+              leading: Icon(Icons.settings),
               title: Text(
                 'Configurações',
                 style: TextStyle(
@@ -88,7 +100,9 @@ class HomePage extends StatelessWidget {
               ),
               onTap: () {},
             ),
+            //sobre o aplicativo
             ListTile(
+              leading: Icon(Icons.info_outline_rounded),
               title: Text(
                 'Sobre',
                 style: TextStyle(
@@ -105,7 +119,9 @@ class HomePage extends StatelessWidget {
                 ),
               },
             ),
+            //logoff do app -> volta para a página de login
             ListTile(
+              leading: Icon(Icons.exit_to_app),
               title: Text(
                 'Sair',
                 style: TextStyle(
@@ -132,13 +148,16 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      //tela do cardápio, nela será mostado as opções diponíveis no momento.
+      //assim que o usuário clicar na opção desejada, será levado para a tela
+      //respectiva a imagem do cardápio
       appBar: AppBar(
         title: Text(
           "Cardápio",
           style: TextStyle(
             color: Colors.white,
             //fontWeight: FontWeight.bold,
-            fontSize: 22,
+            fontSize: 26,
           ),
         ),
         backgroundColor: Color.fromARGB(255, 255, 82, 91),
@@ -160,99 +179,236 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              InkWell(
-                // -> depois que a tela estiver pronta, implementar a rota
-                //onPressed: () => {
-                //Navigator.push(
-                //context,
-                //MaterialPageRoute(
-                //builder: (context) => SpoonEggs(),
-                //),
-                //),
-                //},
-                onTap: () {
-                  _showDialog(context);
-                  // Adicione a ação que deseja executar quando a imagem for pressionada
-                },
-                child: Column(
-                  children: [
-                    Image.asset('assets/exemplo.png'),
-                    SizedBox(
-                        height: 0), // espaço vertical entre a imagem e o texto
-                    Text(
-                      'Ovos de Colher',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              InkWell(
-                // -> depois que a tela estiver pronta, implementar a rota
-                //onPressed: () => {
-                //Navigator.push(
-                //context,
-                //MaterialPageRoute(
-                //builder: (context) => TruffledEggs(),
-                //),
-                //),
-                //},
-                onTap: () {
-                  _showDialog(context);
-                  // Adicione a ação que deseja executar quando a imagem for pressionada
-                },
-                child: Column(
-                  children: [
-                    Image.asset('assets/exemplo.png'),
-                    SizedBox(
-                        height: 0), // espaço vertical entre a imagem e o texto
-                    Text(
-                      'Trufados',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              InkWell(
-                onTap: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MiniEggsScreen(),
+              //aqui será mostrado
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  //ovos de colher
+                  InkWell(
+                    // -> depois que a tela estiver pronta, implementar a rota
+                    //onPressed: () => {
+                    //Navigator.push(
+                    //context,
+                    //MaterialPageRoute(
+                    //builder: (context) => SpoonEggs(),
+                    //),
+                    //),
+                    //},
+                    onTap: () {
+                      _showDialog(context);
+                      // Adicione a ação que deseja executar quando a imagem for pressionada
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/exemplo.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Ovos de Colher',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                },
-                child: Column(
-                  children: [
-                    Image.asset('assets/exemplo.png'),
-                    SizedBox(
-                        height: 0), // espaço vertical entre a imagem e o texto
-                    Text(
-                      'Mini Ovos',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                        fontSize: 20,
-                      ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  //trufados
+                  InkWell(
+                    // -> depois que a tela estiver pronta, implementar a rota
+                    //onPressed: () => {
+                    //Navigator.push(
+                    //context,
+                    //MaterialPageRoute(
+                    //builder: (context) => TruffledEggs(),
+                    //),
+                    //),
+                    //},
+                    onTap: () {
+                      _showDialog(context);
+                      // Adicione a ação que deseja executar quando a imagem for pressionada
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/exemplo.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Trufados',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    //mini ovos
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MiniEggsScreen(),
+                        ),
+                      ),
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/exemplo.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Mini Ovos',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  //barra recheada
+                  InkWell(
+                    onTap: () => {},
+                    child: Column(
+                      children: [
+                        Image.asset('assets/barraRecheada.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Barra Recheada',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              //copo da felicidade
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () => {},
+                    child: Column(
+                      children: [
+                        Image.asset('assets/copoFelicidade.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Copo Felicidade',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  //brigadeiros
+                  InkWell(
+                    onTap: () => {},
+                    child: Column(
+                      children: [
+                        Image.asset('assets/brigadeiros.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Brigadeiros',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () => {},
+                    child: Column(
+                      children: [
+                        Image.asset('assets/exemplo.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          '---------------',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  InkWell(
+                    onTap: () => {},
+                    child: Column(
+                      children: [
+                        Image.asset('assets/exemplo.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          '---------------',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

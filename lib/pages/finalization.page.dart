@@ -9,6 +9,7 @@ class FinalizationScreen extends StatefulWidget {
   State<FinalizationScreen> createState() => _FinalizationScreenState();
 }
 
+// tela de finalização após confirmação do pedido na página da sacola
 class _FinalizationScreenState extends State<FinalizationScreen> {
   @override
   Widget build(BuildContext context) {

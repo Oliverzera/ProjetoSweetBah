@@ -2,21 +2,24 @@ import '/pages/reset_password.page.dart';
 import '/pages/home.page.dart';
 import '/pages/signup.page.dart';
 import '/pages/admin.home.page.dart';
+import '../controller/login_controller.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  //variáveis usadas para controlar ações específicas da tela de login
   bool isAdmin = false;
   bool isAdminSenha = false;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _obscureText = true;
 
   void mensagem(BuildContext context, String msg) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -26,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _login() {
+    //validação que verifica se é o admin que está estradando no app
     if (_formKey.currentState!.validate()) {
       if (_emailController.text == "admin@bah.com" &&
           _passwordController.text == "123456") {
@@ -43,6 +47,14 @@ class _LoginPageState extends State<LoginPage> {
         mensagem(context, "Acesso negado");
       }
     }
+  }
+
+  var txtEmail = TextEditingController();
+  var txtSenha = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -67,8 +79,9 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 20,
             ),
-            //informa o email
+            //entrada do email do usuário
             TextFormField(
+              controller: txtEmail,
               //coloca o @ no teclado celular quando o usuário clicar pra informar algo
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
@@ -82,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                 fontSize: 20,
               ),
               onChanged: (value) {
+                //validando se é o email do admin
                 if (value == "admin@bah.com") {
                   isAdmin = true;
                 } else {
@@ -92,10 +106,11 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 10,
             ),
-            //campo de senha -> deixa escondido o que o usuário informa
+            //campo de senha -> deixa a senha em modo obscuro se o usuário clicar no ícone
             TextFormField(
+              controller: txtSenha,
               keyboardType: TextInputType.text,
-              obscureText: true,
+              obscureText: _obscureText,
               decoration: InputDecoration(
                 labelText: "Senha",
                 labelStyle: TextStyle(
@@ -103,10 +118,21 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.w400,
                   fontSize: 20,
                 ),
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                  child: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                ),
               ),
               style: TextStyle(
                 fontSize: 20,
               ),
+              //validando se é a senha do admin
               onChanged: (value) {
                 if (value == "123456") {
                   isAdminSenha = true;
@@ -120,6 +146,7 @@ class _LoginPageState extends State<LoginPage> {
               alignment: Alignment.centerRight,
               child: TextButton(
                 child: Text(
+                  //botão de recuperação de senha -> o usuário é levado para outra tela do app
                   "Recuperar Senha",
                   style: TextStyle(
                     fontSize: 15,
@@ -140,6 +167,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 40,
             ),
             Container(
+              //botão de confirmação de login
               height: 50,
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
@@ -173,6 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   onPressed: () => {
+                    // se for o Admin, será laçado para uma tela específica
                     if (isAdmin)
                       {
                         Navigator.push(
@@ -183,7 +212,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       }
                     else
+                      //caso seja usuário, será lançado para o cardápio
                       {
+                        LoginController().login(
+                          context,
+                          txtEmail.text,
+                          txtSenha.text,
+                        ),
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -201,6 +236,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Container(
               child: TextButton(
+                //botão qque encaminhará o usuário para outra tela
                 child: Text(
                   "Cadastre-se",
                   textAlign: TextAlign.center,

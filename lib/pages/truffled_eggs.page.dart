@@ -5,6 +5,7 @@ import '/pages/payment.page.dart';
 class TruffledEggs extends StatelessWidget {
   const TruffledEggs({super.key});
 
+  //tela dos ovos trufados
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,14 +15,14 @@ class TruffledEggs extends StatelessWidget {
         title: Text(
           "Ovos Trufados",
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 26,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 255, 73, 82),
+        backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Colors.white,
+          color: Colors.black,
           onPressed: () => Navigator.pop(context),
         ),
         //body: ListView.builder(

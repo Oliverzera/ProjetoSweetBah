@@ -20,6 +20,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
     // -> implementar api pra vincular com a lógica
   }
 
+  //informações de pamento.
+  //cartões que o usuário pode addicionar como forma de pagamento
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +29,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
         title: Text(
           "Pagamento",
           style: TextStyle(
-            color: Colors.white,
-            //fontWeight: FontWeight.bold,
-            fontSize: 22,
+            color: Colors.black,
+            fontSize: 26,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 255, 82, 91),
+        backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
@@ -111,6 +112,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
                 ),
               },
+              //botão de confirmação do pagamento
               child: Text(
                 'Pagar',
                 style: TextStyle(

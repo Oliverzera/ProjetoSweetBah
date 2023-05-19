@@ -1,24 +1,38 @@
 import 'package:flutter/material.dart';
+import '../controller/login_controller.dart';
 import '/pages/login.page.dart';
 
-class ResetPasswordPage extends StatelessWidget {
+class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
 
-  void mensagem(BuildContext context, String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: Duration(seconds: 5),
-      content: Text(msg),
-    ));
+  @override
+  State<ResetPasswordPage> createState() => _ResetPasswordPage();
+}
+
+void mensagem(BuildContext context, String msg) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    duration: Duration(seconds: 5),
+    content: Text(msg),
+  ));
+}
+
+class _ResetPasswordPage extends State<ResetPasswordPage> {
+  var txtEmailEsqueceuSenha = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
   }
 
+  //tela em que o usuário conseguirá resgatar sua senha esquecida
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 82, 91),
+        backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Colors.white,
+          color: Colors.black,
           onPressed: () => Navigator.pop(context, false),
         ),
       ),
@@ -51,7 +65,7 @@ class ResetPasswordPage extends StatelessWidget {
               height: 10,
             ),
             Text(
-              "Informe o E-mail associado a conta cadastrada!! Eviaremos um link de com os passoa para restauração da sua senha.",
+              "Identifique-se para receber um e-mail com as instruções e o link para criar uma nova senha.",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
@@ -63,6 +77,8 @@ class ResetPasswordPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   TextFormField(
+                    controller: txtEmailEsqueceuSenha,
+                    //informa o email
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: "E-mail",
@@ -97,6 +113,7 @@ class ResetPasswordPage extends StatelessWidget {
                     ),
                     child: SizedBox.expand(
                       child: TextButton(
+                        //confirma a solicitação do email
                         child: Text(
                           "Enviar",
                           style: TextStyle(
@@ -107,13 +124,18 @@ class ResetPasswordPage extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         onPressed: () => {
+                          LoginController().esqueceuSenha(
+                            context,
+                            txtEmailEsqueceuSenha.text,
+                          ),
                           Navigator.pop(
                             context,
                             MaterialPageRoute(
                               builder: (context) => LoginPage(),
                             ),
                           ),
-                          mensagem(context, "Verifique o seu email, a recuperação de senha já foi enviada!")
+                          mensagem(context,
+                              "Verifique o seu email, a recuperação de senha já foi enviada!/n olha na caixa de spam também...")
                         },
                       ),
                     ),

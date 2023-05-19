@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '/pages/login.page.dart';
+import '../controller/login_controller.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  const SignupPage({super.key});
 
   @override
   _SignupPageState createState() => _SignupPageState();
@@ -12,6 +13,16 @@ class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
   String _password = '';
   String _confirmPassword = '';
+  var txtNome = TextEditingController();
+  var txtEmail = TextEditingController();
+  var txtSenha = TextEditingController();
+  var txtSenhaConfirmacao = TextEditingController();
+  var txtCelular = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void mensagem(BuildContext context, String msg) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -20,6 +31,7 @@ class _SignupPageState extends State<SignupPage> {
     ));
   }
 
+  //tela ondew será feito o cadastro do novo usuário
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +96,9 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(
               height: 20,
             ),
+            //campo nome
             TextFormField(
+              controller: txtNome,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: "Nome",
@@ -101,7 +115,9 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(
               height: 10,
             ),
+            //campo email
             TextFormField(
+              controller: txtEmail,
               //aparecer o @ como padrão no teclado
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
@@ -119,10 +135,10 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(
               height: 10,
             ),
+            //campo senha
             TextFormField(
+              controller: txtSenha,
               keyboardType: TextInputType.text,
-              //mascara a senha
-              obscureText: true,
               decoration: InputDecoration(
                 labelText: "Senha",
                 labelStyle: TextStyle(
@@ -131,6 +147,7 @@ class _SignupPageState extends State<SignupPage> {
                   fontSize: 20,
                 ),
               ),
+              //verificação da senha
               style: TextStyle(fontSize: 20),
               onChanged: (value) => _password = value,
               validator: (value) {
@@ -146,10 +163,10 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(
               height: 10,
             ),
+            //campo de confirmação de senha
             TextFormField(
+              controller: txtSenhaConfirmacao,
               keyboardType: TextInputType.text,
-              //mascara a senha
-              obscureText: true,
               decoration: InputDecoration(
                 labelText: "Confirme sua senha",
                 labelStyle: TextStyle(
@@ -173,7 +190,9 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(
               height: 10,
             ),
+            //campo celular
             TextFormField(
+              controller: txtCelular,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 labelText: "Celular",
@@ -188,6 +207,7 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(
               height: 25,
             ),
+            //botão de confirmação do cadastro
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
@@ -218,13 +238,20 @@ class _SignupPageState extends State<SignupPage> {
                     textAlign: TextAlign.center,
                   ),
                   onPressed: () => {
+                    LoginController().criarConta(
+                      context,
+                      txtNome,
+                      txtEmail,
+                      txtSenha,
+                      txtCelular,
+                    ),
                     Navigator.pop(
                       context,
                       MaterialPageRoute(
                         builder: (context) => LoginPage(),
                       ),
                     ),
-                    mensagem(context, "Cadastro realizado com sucesso!")
+                    //mensagem(context, "Cadastro realizado com sucesso!")
                   },
                 ),
               ),
@@ -232,6 +259,7 @@ class _SignupPageState extends State<SignupPage> {
             SizedBox(
               height: 10,
             ),
+            //botão de cancelamento de cadastro
             Container(
               height: 40,
               alignment: Alignment.center,
