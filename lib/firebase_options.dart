@@ -47,31 +47,31 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC40FeU17AuE92G3uIWYOarvhiBSMbo9Rc',
-    appId: '1:817537227901:web:a5506a8903ff451493e514',
-    messagingSenderId: '817537227901',
-    projectId: 'app-fatecrp-tarefas-noite',
-    authDomain: 'app-fatecrp-tarefas-noite.firebaseapp.com',
-    storageBucket: 'app-fatecrp-tarefas-noite.appspot.com',
-    measurementId: 'G-06W53ZN591',
+    apiKey: 'AIzaSyAv9K17_s-AlR_aUXJEYjbOe9Y3BQ7qgbw',
+    appId: '1:614274060007:web:347c49f5d35a06e87a5c42',
+    messagingSenderId: '614274060007',
+    projectId: 'app-avaliacao-sweetbah',
+    authDomain: 'app-avaliacao-sweetbah.firebaseapp.com',
+    storageBucket: 'app-avaliacao-sweetbah.appspot.com',
+    measurementId: 'G-T5MBD7S9PY',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDsLb9_PnWPvduJX-VSk4Q8bNnT39EJi3Q',
-    appId: '1:817537227901:android:e5d8d4a4f546c4f793e514',
-    messagingSenderId: '817537227901',
-    projectId: 'app-fatecrp-tarefas-noite',
-    storageBucket: 'app-fatecrp-tarefas-noite.appspot.com',
+    apiKey: 'AIzaSyDH0Qvst52JjEQa5JJAOxOSRrcpMsHHBO4',
+    appId: '1:614274060007:android:8b802d585505abb87a5c42',
+    messagingSenderId: '614274060007',
+    projectId: 'app-avaliacao-sweetbah',
+    storageBucket: 'app-avaliacao-sweetbah.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAWHIl33S3ZMy8INI1SHsWsH-5o05eYW1E',
-    appId: '1:817537227901:ios:e97bcc2f36393d9793e514',
-    messagingSenderId: '817537227901',
-    projectId: 'app-fatecrp-tarefas-noite',
-    storageBucket: 'app-fatecrp-tarefas-noite.appspot.com',
+    apiKey: 'AIzaSyBH2xwqwFmavL2aqG6CHpK7EizAA7xAoj4',
+    appId: '1:614274060007:ios:107cbf2557f860277a5c42',
+    messagingSenderId: '614274060007',
+    projectId: 'app-avaliacao-sweetbah',
+    storageBucket: 'app-avaliacao-sweetbah.appspot.com',
     iosClientId:
-        '817537227901-qe16jhf15ian4n24mo49sdcjqbbpd4q9.apps.googleusercontent.com',
-    iosBundleId: 'com.example.app09ListaTarefas',
+        '614274060007-n4cbg97mp9d79o3pgol8calgsrk95bkd.apps.googleusercontent.com',
+    iosBundleId: 'com.example.appAvaliacao',
   );
 }

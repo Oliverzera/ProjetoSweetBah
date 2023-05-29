@@ -1,4 +1,7 @@
+import 'package:app_avaliacao/controller/pedidos_controller.dart';
+import 'package:app_avaliacao/model/pedido.dart';
 import 'package:app_avaliacao/pages/bag.page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '/pages/home.page.dart';
 import '/pages/payment.page.dart';
@@ -229,7 +232,19 @@ class _MiniEggsScreenState extends State<MiniEggsScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: () => {
+                      onPressed: ()  {
+                        var opcao = "";
+                        if (_opcaoSelecionada1){
+                          opcao = "1";
+                        }else if (_opcaoSelecionada2){
+                          opcao = "2";
+                        }else{
+                          opcao = "3";
+                        }
+
+                        var p = Pedido(FirebaseAuth.instance.currentUser!.uid, opcao, _trio1.toString(), sabor_trio2, sabor_trio3, sabor_barra1, sabor_barra2, data_pedido, tipo)
+                        PedidoController().adicionar(context, p);
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -238,7 +253,7 @@ class _MiniEggsScreenState extends State<MiniEggsScreen> {
                                   '', //-> informação que deve levar para a tela sacola
                             ),
                           ),
-                        ),
+                        );
                       },
                       //botão de confirmação do pedido.
                       //o usupario será levado para a tela de sacola, para fazer a última confirmação

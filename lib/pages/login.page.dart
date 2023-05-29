@@ -21,13 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
-  void mensagem(BuildContext context, String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: Duration(seconds: 1),
-      content: Text(msg),
-    ));
-  }
-
   void _login() {
     //validação que verifica se é o admin que está estradando no app
     if (_formKey.currentState!.validate()) {
@@ -219,14 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                           txtEmail.text,
                           txtSenha.text,
                         ),
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(),
-                          ),
-                        ),
                       },
-                    mensagem(context, "Acesso permito")
                   },
                 ),
               ),

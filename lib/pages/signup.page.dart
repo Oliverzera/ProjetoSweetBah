@@ -240,10 +240,10 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () => {
                     LoginController().criarConta(
                       context,
-                      txtNome,
-                      txtEmail,
-                      txtSenha,
-                      txtCelular,
+                      txtNome.text,
+                      txtEmail.text,
+                      txtSenha.text,
+                      txtCelular.text,
                     ),
                     Navigator.pop(
                       context,
