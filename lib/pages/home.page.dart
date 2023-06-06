@@ -1,7 +1,11 @@
+import 'package:app_avaliacao/pages/cadastral_changes.page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '/pages/about.page.dart';
 import '/pages/spoon_eggs.page.dart';
 import '/pages/truffled_eggs.page.dart';
 import '/pages/mini_eggs.page.dart';
+import '/pages/payment.page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -62,7 +66,9 @@ class HomePage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                _showDialog(context);
+              },
             ),
             //dados pessoais
             ListTile(
@@ -74,7 +80,12 @@ class HomePage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CadastroScreen()),
+                );
+              },
             ),
             //cartões para pagamento e outras formas de pagamento
             ListTile(
@@ -86,7 +97,14 @@ class HomePage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              onTap: () {},
+              onTap: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentScreen(),
+                  ),
+                )
+              },
             ),
             //configurações gerais do app
             ListTile(
@@ -98,7 +116,9 @@ class HomePage extends StatelessWidget {
                   fontSize: 18,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                _showDialog(context);
+              },
             ),
             //sobre o aplicativo
             ListTile(
@@ -130,7 +150,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.popUntil(context, (route) => route.isFirst);
+                FirebaseAuth.instance.signOut();
+                //Navigator.popUntil(context, (route) => route.isFirst);
               },
             ),
             SizedBox(
@@ -290,23 +311,27 @@ class HomePage extends StatelessWidget {
                   ),
                   //barra recheada
                   InkWell(
-                    onTap: () => {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/barraRecheada.png'),
-                        SizedBox(
-                            height:
-                                0), // espaço vertical entre a imagem e o texto
-                        Text(
-                          'Barra Recheada',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
+                    //onTap: () => {},
+                    //child: Column(
+                    //children: [
+                    // Image.asset('assets/barraRecheada.png'),
+                    // SizedBox(
+                    //    height:
+                    //        0), // espaço vertical entre a imagem e o texto
+                    //  Text(
+                    //   'Barra Recheada',
+                    //   style: TextStyle(
+                    //     fontWeight: FontWeight.w700,
+                    //     color: Colors.black,
+                    //     fontSize: 20,
+                    //   ),
+                    // ),
+                    // ],
+                    //),
+                    onTap: () {
+                      _showDialog(context);
+                      // Adicione a ação que deseja executar quando a imagem for pressionada
+                    },
                   ),
                 ],
               ),
@@ -318,46 +343,54 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () => {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/copoFelicidade.png'),
-                        SizedBox(
-                            height:
-                                0), // espaço vertical entre a imagem e o texto
-                        Text(
-                          'Copo Felicidade',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
+                    //onTap: () => {},
+                    //child: Column(
+                    //children: [
+                    // Image.asset('assets/copoFelicidade.png'),
+                    // SizedBox(
+                    //     height:
+                    //        0), // espaço vertical entre a imagem e o texto
+                    //  Text(
+                    //      'Copo Felicidade',
+                    // style: TextStyle(
+                    //     fontWeight: FontWeight.w700,
+                    //  color: Colors.black,
+                    //fontSize: 20,
+                    //),
+                    //),
+                    //],
+                    //),
+                    onTap: () {
+                      _showDialog(context);
+                      // Adicione a ação que deseja executar quando a imagem for pressionada
+                    },
                   ),
                   SizedBox(
                     width: 30,
                   ),
                   //brigadeiros
                   InkWell(
-                    onTap: () => {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/brigadeiros.png'),
-                        SizedBox(
-                            height:
-                                0), // espaço vertical entre a imagem e o texto
-                        Text(
-                          'Brigadeiros',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
+                    //onTap: () => {},
+                    //child: Column(
+                    // children: [
+                    //Image.asset('assets/brigadeiros.png'),
+                    //  SizedBox(
+                    // height:
+                    //       0), // espaço vertical entre a imagem e o texto
+                    // Text(
+                    //'Brigadeiros',
+                    // style: TextStyle(
+                    // fontWeight: FontWeight.w700,
+                    //  color: Colors.black,
+                    // fontSize: 20,
+                    // ),
+                    // ),
+                    // ],
+                    // ),
+                    onTap: () {
+                      _showDialog(context);
+                      // Adicione a ação que deseja executar quando a imagem for pressionada
+                    },
                   ),
                 ],
               ),
@@ -368,45 +401,53 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () => {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/exemplo.png'),
-                        SizedBox(
-                            height:
-                                0), // espaço vertical entre a imagem e o texto
-                        Text(
-                          '---------------',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
+                    // onTap: () => {},
+                    //child: Column(
+                    //children: [
+                    //Image.asset('assets/exemplo.png'),
+                    // SizedBox(
+                    //  height:
+                    //       0), // espaço vertical entre a imagem e o texto
+                    //Text(
+                    //   '---------------',
+                    // style: TextStyle(
+                    //  fontWeight: FontWeight.w700,
+                    //   color: Colors.black,
+                    // fontSize: 20,
+                    // ),
+                    // ),
+                    // ],
+                    // ),
+                    onTap: () {
+                      _showDialog(context);
+                      // Adicione a ação que deseja executar quando a imagem for pressionada
+                    },
                   ),
                   SizedBox(
                     width: 30,
                   ),
                   InkWell(
-                    onTap: () => {},
-                    child: Column(
-                      children: [
-                        Image.asset('assets/exemplo.png'),
-                        SizedBox(
-                            height:
-                                0), // espaço vertical entre a imagem e o texto
-                        Text(
-                          '---------------',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
+                    //onTap: () => {},
+                    //child: Column(
+                    // children: [
+                    // Image.asset('assets/exemplo.png'),
+                    // SizedBox(
+                    //  height:
+                    //      0), // espaço vertical entre a imagem e o texto
+                    //Text(
+                    //  '---------------',
+                    //style: TextStyle(
+                    // fontWeight: FontWeight.w700,
+                    //  color: Colors.black,
+                    //    fontSize: 20,
+                    //    ),
+                    //    ),
+                    //  ],
+                    // ),
+                    onTap: () {
+                      _showDialog(context);
+                      // Adicione a ação que deseja executar quando a imagem for pressionada
+                    },
                   ),
                 ],
               ),

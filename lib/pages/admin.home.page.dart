@@ -7,6 +7,16 @@ class AdminHomePage extends StatelessWidget {
   //aqui deve aparecer um listview com os pedidos a serem feitos
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Pedidos a produzir",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 26,
+          ),
+        ),
+      ),
+    );
   }
 }

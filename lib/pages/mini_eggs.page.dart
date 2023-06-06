@@ -232,18 +232,18 @@ class _MiniEggsScreenState extends State<MiniEggsScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: ()  {
+                      onPressed: () {
                         var opcao = "";
-                        if (_opcaoSelecionada1){
+                        if (_opcaoSelecionada1) {
                           opcao = "1";
-                        }else if (_opcaoSelecionada2){
+                        } else if (_opcaoSelecionada2) {
                           opcao = "2";
-                        }else{
+                        } else {
                           opcao = "3";
                         }
 
-                        var p = Pedido(FirebaseAuth.instance.currentUser!.uid, opcao, _trio1.toString(), sabor_trio2, sabor_trio3, sabor_barra1, sabor_barra2, data_pedido, tipo)
-                        PedidoController().adicionar(context, p);
+                        //var p = Pedido(FirebaseAuth.instance.currentUser!.uid, opcao, _trio1.toString(), _trio2.toString(), _trio3.toString(), sabor_barra1, sabor_barra2, data_pedido, tipo)
+                        //PedidoController().adicionar(context, p);
 
                         Navigator.push(
                           context,
