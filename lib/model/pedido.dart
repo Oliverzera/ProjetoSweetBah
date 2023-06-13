@@ -44,7 +44,7 @@ class Pedido {
       json['sabor_barra1'],
       json['sabor_barra2'],
       json['data_pedido'],
-      json['tipo']
+      json['tipo'],
     );
   }
 }

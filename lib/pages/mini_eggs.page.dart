@@ -26,8 +26,14 @@ class _MiniEggsScreenState extends State<MiniEggsScreen> {
   bool _opcaoSelecionada3 = false;
   int _quantidadeSelecionada = 1;
   int _opcaoSelecionadaInfoPedido = 0;
+  TextEditingController _dateController = TextEditingController();
 
   @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       key: UniqueKey(), // -> adicionar uma chave única para
@@ -38,13 +44,13 @@ class _MiniEggsScreenState extends State<MiniEggsScreen> {
         title: Text(
           "Mini Ovos",
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 26,
+            color: Colors.white,
+            fontSize: 22,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 82, 91),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -182,6 +188,7 @@ class _MiniEggsScreenState extends State<MiniEggsScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.datetime,
+                  controller: _dateController,
                   decoration: InputDecoration(
                     labelText: "Para",
                     labelStyle: TextStyle(
@@ -242,16 +249,22 @@ class _MiniEggsScreenState extends State<MiniEggsScreen> {
                           opcao = "3";
                         }
 
-                        //var p = Pedido(FirebaseAuth.instance.currentUser!.uid, opcao, _trio1.toString(), _trio2.toString(), _trio3.toString(), sabor_barra1, sabor_barra2, data_pedido, tipo)
-                        //PedidoController().adicionar(context, p);
+                        var p = Pedido(
+                            FirebaseAuth.instance.currentUser!.uid,
+                            opcao,
+                            _trio1.toString(),
+                            _trio2.toString(),
+                            _trio3.toString(),
+                            _saborBarraNinho.toString(),
+                            _saborBarraBrigadeiroGourmet.toString(),
+                            _dateController.toString(),
+                            _opcaoSelecionadaInfoPedido.toString());
+                        PedidoController().adicionar(context, p);
 
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BagPage(
-                              informacao:
-                                  '', //-> informação que deve levar para a tela sacola
-                            ),
+                            builder: (context) => PaymentScreen(),
                           ),
                         );
                       },

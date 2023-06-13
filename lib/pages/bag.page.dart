@@ -1,11 +1,14 @@
-import '/pages/finalization.page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../controller/login_controller.dart';
 import '/pages/home.page.dart';
 import 'package:flutter/material.dart';
+import '../controller/pedidos_controller.dart';
+import '../model/pedido.dart';
 
 class BagPage extends StatefulWidget {
-  final String informacao;
+  //final String informacao;
 
-  BagPage({required this.informacao});
+  //BagPage({required this.informacao});
 
   @override
   State<BagPage> createState() => _BagPageState();
@@ -14,14 +17,8 @@ class BagPage extends StatefulWidget {
 //os pedidos deve passar por essa página para mais um confirmação do usuário e, caso
 //ele queria adicionar mais pedidos, voltar para o cárdio e manter salvo o que já tem na sacola
 class _BagPageState extends State<BagPage> {
-  @override
-  List<String> sacola = [];
-
-  @override
-  void initState() {
-    super.initState();
-    sacola.add(widget.informacao);
-  }
+  var txtTitulo = TextEditingController();
+  var txtDescricao = TextEditingController();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,39 +26,62 @@ class _BagPageState extends State<BagPage> {
         title: Text(
           "Sacola",
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 26,
+            color: Colors.white,
+            fontSize: 22,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 82, 91),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Container(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Text(
-              'Itens na sacola:',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Expanded(
-              child: ListView.builder(
-                itemCount: sacola.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(sacola[index]),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: PedidoController().listar().snapshots(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return Center(
+                  child: Text('Não foi possível conectar.'),
+                );
+              case ConnectionState.waiting:
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              default:
+                final dados = snapshot.requireData;
+                if (dados.size > 0) {
+                  return ListView.builder(
+                    itemCount: dados.size,
+                    itemBuilder: (context, index) {
+                      String id = dados.docs[index].id;
+                      dynamic item = dados.docs[index].data();
+                      return Card(
+                        child: ListTile(
+                          leading: Icon(Icons.description),
+                          title: Text(item['modelo']),
+                          subtitle: Text(item['descricao']),
+                          onTap: () {
+                            txtTitulo.text = item['titulo'];
+                            txtDescricao.text = item['descricao'];
+                            //salvarPedidos(context, docId: id);
+                          },
+                          onLongPress: () {
+                            PedidoController().excluir(context, id);
+                          },
+                        ),
+                      );
+                    },
                   );
-                },
-              ),
-            ),
-          ],
+                } else {
+                  return Center(
+                    child: Text('Nenhum pedido encontrado.'),
+                  );
+                }
+            }
+          },
         ),
       ),
     );

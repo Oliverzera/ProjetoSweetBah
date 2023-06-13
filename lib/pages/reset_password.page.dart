@@ -128,12 +128,6 @@ class _ResetPasswordPage extends State<ResetPasswordPage> {
                             context,
                             txtEmailEsqueceuSenha.text,
                           ),
-                          Navigator.pop(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(),
-                            ),
-                          ),
                           mensagem(context,
                               "Verifique o seu email, a recuperação de senha já foi enviada!/n olha na caixa de spam também...")
                         },

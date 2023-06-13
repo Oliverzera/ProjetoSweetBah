@@ -14,11 +14,15 @@ class Sobre extends StatelessWidget {
         title: Text(
           "Sobre",
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 26,
+            color: Colors.white,
+            fontSize: 22,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 82, 91),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: GestureDetector(
         onTap: () {
@@ -47,11 +51,6 @@ class Sobre extends StatelessWidget {
                 SizedBox(
                   height: 0,
                 ),
-                //Image.asset(
-                //'assets/app-logo.png',
-                //width: 300,
-                //height: 300,
-                //),
               ],
             ),
           ),

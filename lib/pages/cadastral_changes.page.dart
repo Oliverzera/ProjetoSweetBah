@@ -1,4 +1,9 @@
+import 'package:app_avaliacao/controller/login_controller.dart';
+import 'package:app_avaliacao/pages/cadastral_changes.page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
+import '/pages/home.page.dart';
 
 class CadastroScreen extends StatefulWidget {
   @override
@@ -59,7 +64,18 @@ class _CadastroScreenState extends State<CadastroScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Alterar Dados Cadastrais'),
+        title: Text(
+          'Alterar Dados Cadastrais',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 26,
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 255, 82, 91),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

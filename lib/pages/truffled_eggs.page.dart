@@ -15,14 +15,14 @@ class TruffledEggs extends StatelessWidget {
         title: Text(
           "Ovos Trufados",
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 26,
+            color: Colors.white,
+            fontSize: 22,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 82, 91),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          color: Colors.black,
+          color: Colors.white,
           onPressed: () => Navigator.pop(context),
         ),
         //body: ListView.builder(

@@ -12,9 +12,14 @@ class AdminHomePage extends StatelessWidget {
         title: Text(
           "Pedidos a produzir",
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 26,
+            color: Colors.white,
+            fontSize: 22,
           ),
+        ),
+        backgroundColor: Color.fromARGB(255, 255, 82, 91),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
         ),
       ),
     );

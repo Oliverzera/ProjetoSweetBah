@@ -1,3 +1,4 @@
+import 'package:app_avaliacao/controller/login_controller.dart';
 import 'package:app_avaliacao/pages/cadastral_changes.page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -41,20 +42,30 @@ class HomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            //barra que fica exposta na tela quando o usuário clica no ícone do menu
-            DrawerHeader(
-              child: Text(
-                //nome do usuário no top do drawer acompanhado de uma foto
-                'Nome do usuário',
-                style: TextStyle(
-                  color: Colors.white,
-                  //fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
-              ),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 82, 91),
-              ),
+            FutureBuilder<String>(
+              future: LoginController().usuarioLogado(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        textStyle: TextStyle(fontSize: 22),
+                      ),
+                      onPressed: () {
+                        LoginController().logout();
+                        Navigator.pushReplacementNamed(context, 'login');
+                      },
+                      icon: Icon(Icons.exit_to_app, size: 15),
+                      label: Text(snapshot.data.toString()),
+                    ),
+                  );
+                  return Text('');
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
             ),
             //alterar foto
             ListTile(
@@ -74,18 +85,13 @@ class HomePage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.person),
               title: Text(
-                'Dados pessoais',
+                'Altere os dados pessoais',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                 ),
               ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CadastroScreen()),
-                );
-              },
+              onTap: () {},
             ),
             //cartões para pagamento e outras formas de pagamento
             ListTile(
@@ -137,21 +143,6 @@ class HomePage extends StatelessWidget {
                     builder: (context) => Sobre(),
                   ),
                 ),
-              },
-            ),
-            //logoff do app -> volta para a página de login
-            ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text(
-                'Sair',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                ),
-              ),
-              onTap: () {
-                FirebaseAuth.instance.signOut();
-                //Navigator.popUntil(context, (route) => route.isFirst);
               },
             ),
             SizedBox(
@@ -226,7 +217,7 @@ class HomePage extends StatelessWidget {
                             height:
                                 0), // espaço vertical entre a imagem e o texto
                         Text(
-                          'Ovos de Colher',
+                          'Ovos de \nColher',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Colors.black,
@@ -261,7 +252,7 @@ class HomePage extends StatelessWidget {
                             height:
                                 0), // espaço vertical entre a imagem e o texto
                         Text(
-                          'Trufados',
+                          '\nTrufados',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Colors.black,
@@ -296,7 +287,7 @@ class HomePage extends StatelessWidget {
                             height:
                                 0), // espaço vertical entre a imagem e o texto
                         Text(
-                          'Mini Ovos',
+                          '\nMini Ovos',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Colors.black,
@@ -311,27 +302,26 @@ class HomePage extends StatelessWidget {
                   ),
                   //barra recheada
                   InkWell(
-                    //onTap: () => {},
-                    //child: Column(
-                    //children: [
-                    // Image.asset('assets/barraRecheada.png'),
-                    // SizedBox(
-                    //    height:
-                    //        0), // espaço vertical entre a imagem e o texto
-                    //  Text(
-                    //   'Barra Recheada',
-                    //   style: TextStyle(
-                    //     fontWeight: FontWeight.w700,
-                    //     color: Colors.black,
-                    //     fontSize: 20,
-                    //   ),
-                    // ),
-                    // ],
-                    //),
                     onTap: () {
                       _showDialog(context);
                       // Adicione a ação que deseja executar quando a imagem for pressionada
                     },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/barraRecheada.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Barra \nRecheada',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -343,54 +333,49 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    //onTap: () => {},
-                    //child: Column(
-                    //children: [
-                    // Image.asset('assets/copoFelicidade.png'),
-                    // SizedBox(
-                    //     height:
-                    //        0), // espaço vertical entre a imagem e o texto
-                    //  Text(
-                    //      'Copo Felicidade',
-                    // style: TextStyle(
-                    //     fontWeight: FontWeight.w700,
-                    //  color: Colors.black,
-                    //fontSize: 20,
-                    //),
-                    //),
-                    //],
-                    //),
                     onTap: () {
                       _showDialog(context);
                       // Adicione a ação que deseja executar quando a imagem for pressionada
                     },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/copoFelicidade.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Copo da \nFelicidade',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     width: 30,
                   ),
                   //brigadeiros
                   InkWell(
-                    //onTap: () => {},
-                    //child: Column(
-                    // children: [
-                    //Image.asset('assets/brigadeiros.png'),
-                    //  SizedBox(
-                    // height:
-                    //       0), // espaço vertical entre a imagem e o texto
-                    // Text(
-                    //'Brigadeiros',
-                    // style: TextStyle(
-                    // fontWeight: FontWeight.w700,
-                    //  color: Colors.black,
-                    // fontSize: 20,
-                    // ),
-                    // ),
-                    // ],
-                    // ),
-                    onTap: () {
-                      _showDialog(context);
-                      // Adicione a ação que deseja executar quando a imagem for pressionada
-                    },
+                    onTap: () => {},
+                    child: Column(
+                      children: [
+                        Image.asset('assets/brigadeiros.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          '\nBrigadeiros',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -400,54 +385,54 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  //Cápsula de Chocolate com Cappuccino
                   InkWell(
-                    // onTap: () => {},
-                    //child: Column(
-                    //children: [
-                    //Image.asset('assets/exemplo.png'),
-                    // SizedBox(
-                    //  height:
-                    //       0), // espaço vertical entre a imagem e o texto
-                    //Text(
-                    //   '---------------',
-                    // style: TextStyle(
-                    //  fontWeight: FontWeight.w700,
-                    //   color: Colors.black,
-                    // fontSize: 20,
-                    // ),
-                    // ),
-                    // ],
-                    // ),
                     onTap: () {
                       _showDialog(context);
                       // Adicione a ação que deseja executar quando a imagem for pressionada
                     },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/capsulaChocolateCapp.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          'Cápsula de\nChocolate com\nCappuccino',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     width: 30,
                   ),
                   InkWell(
-                    //onTap: () => {},
-                    //child: Column(
-                    // children: [
-                    // Image.asset('assets/exemplo.png'),
-                    // SizedBox(
-                    //  height:
-                    //      0), // espaço vertical entre a imagem e o texto
-                    //Text(
-                    //  '---------------',
-                    //style: TextStyle(
-                    // fontWeight: FontWeight.w700,
-                    //  color: Colors.black,
-                    //    fontSize: 20,
-                    //    ),
-                    //    ),
-                    //  ],
-                    // ),
                     onTap: () {
                       _showDialog(context);
                       // Adicione a ação que deseja executar quando a imagem for pressionada
                     },
+                    child: Column(
+                      children: [
+                        Image.asset('assets/bah1.png'),
+                        SizedBox(
+                            height:
+                                0), // espaço vertical entre a imagem e o texto
+                        Text(
+                          '\n\n---------------',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -29,11 +29,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
         title: Text(
           "Pagamento",
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 26,
+            color: Colors.white,
+            fontSize: 22,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 82, 91),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(16),
@@ -44,7 +48,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               "Informações do Cartão de Crédito",
               style: TextStyle(
                 fontSize: 18,
-                //fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: 16.0),

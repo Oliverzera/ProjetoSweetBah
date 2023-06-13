@@ -24,13 +24,6 @@ class _SignupPageState extends State<SignupPage> {
     super.initState();
   }
 
-  void mensagem(BuildContext context, String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: Duration(seconds: 5),
-      content: Text(msg),
-    ));
-  }
-
   //tela ondew será feito o cadastro do novo usuário
   @override
   Widget build(BuildContext context) {
