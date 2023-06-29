@@ -1,33 +1,33 @@
-import 'package:app_avaliacao/controller/login_controller.dart';
-import 'package:app_avaliacao/pages/cadastral_changes.page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
+import '../controller/login_controller.dart';
 import '/pages/about.page.dart';
-import '/pages/spoon_eggs.page.dart';
-import '/pages/truffled_eggs.page.dart';
 import '/pages/mini_eggs.page.dart';
 import '/pages/payment.page.dart';
 
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   //pop-up que é mostrado quando o usuário clica em uma funcionalidade qeu ainda não foi incluída no app
   void _showDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Opaaa...'),
-          content: Text(
+          title: const Text('Opaaa...'),
+          content: const Text(
               'Esta funcionalidade ainda não foi implementada, tente outra hora!'),
           actions: [
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Fechar'),
+              child: const Text('Fechar'),
             ),
           ],
         );
@@ -42,35 +42,38 @@ class HomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            FutureBuilder<String>(
-              future: LoginController().usuarioLogado(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: TextButton.icon(
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        textStyle: TextStyle(fontSize: 22),
-                      ),
-                      onPressed: () {
-                        LoginController().logout();
-                        Navigator.pushReplacementNamed(context, 'login');
-                      },
-                      icon: Icon(Icons.exit_to_app, size: 15),
-                      label: Text(snapshot.data.toString()),
-                    ),
-                  );
-                  return Text('');
-                } else {
-                  return CircularProgressIndicator();
-                }
-              },
+            const SizedBox(
+              height: 30,
             ),
+            FutureBuilder<String>(
+                future: LoginController().usuarioLogado(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Center(
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          const Text('Bem-vindo, ',
+                              style: TextStyle(fontSize: 20)),
+                          Text('${snapshot.data}',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20))
+                        ],
+                      ),
+                    );
+                  }
+
+                  return const Text(
+                    'Bem-vindo, usuário',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  );
+                }),
             //alterar foto
             ListTile(
-              leading: Icon(Icons.camera_alt),
-              title: Text(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text(
                 'Alterar foto',
                 style: TextStyle(
                   color: Colors.black,
@@ -83,8 +86,8 @@ class HomePage extends StatelessWidget {
             ),
             //dados pessoais
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text(
+              leading: const Icon(Icons.person),
+              title: const Text(
                 'Altere os dados pessoais',
                 style: TextStyle(
                   color: Colors.black,
@@ -95,8 +98,8 @@ class HomePage extends StatelessWidget {
             ),
             //cartões para pagamento e outras formas de pagamento
             ListTile(
-              leading: Icon(Icons.payment),
-              title: Text(
+              leading: const Icon(Icons.payment),
+              title: const Text(
                 'Pagamento',
                 style: TextStyle(
                   color: Colors.black,
@@ -107,15 +110,15 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PaymentScreen(),
+                    builder: (context) => const PaymentScreen(),
                   ),
                 )
               },
             ),
             //configurações gerais do app
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text(
+              leading: const Icon(Icons.settings),
+              title: const Text(
                 'Configurações',
                 style: TextStyle(
                   color: Colors.black,
@@ -128,8 +131,8 @@ class HomePage extends StatelessWidget {
             ),
             //sobre o aplicativo
             ListTile(
-              leading: Icon(Icons.info_outline_rounded),
-              title: Text(
+              leading: const Icon(Icons.info_outline_rounded),
+              title: const Text(
                 'Sobre',
                 style: TextStyle(
                   color: Colors.black,
@@ -140,15 +143,15 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Sobre(),
+                    builder: (context) => const Sobre(),
                   ),
                 ),
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 120,
             ),
-            ListTile(
+            const ListTile(
               title: Text(
                 "Versão 1.0",
                 style: TextStyle(
@@ -164,7 +167,7 @@ class HomePage extends StatelessWidget {
       //assim que o usuário clicar na opção desejada, será levado para a tela
       //respectiva a imagem do cardápio
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Cardápio",
           style: TextStyle(
             color: Colors.white,
@@ -172,10 +175,10 @@ class HomePage extends StatelessWidget {
             fontSize: 26,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 255, 82, 91),
+        backgroundColor: const Color.fromARGB(255, 255, 82, 91),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_bag),
+            icon: const Icon(Icons.shopping_bag),
             onPressed: () {
               // Adicione a ação que deseja executar quando o ícone for pressionado
             },
@@ -188,7 +191,7 @@ class HomePage extends StatelessWidget {
             // foi criado uma coluna com os botões que levam o usuário para tela lincada com o botão
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               //aqui será mostrado
@@ -213,10 +216,10 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset('assets/exemplo.png'),
-                        SizedBox(
+                        const SizedBox(
                             height:
                                 0), // espaço vertical entre a imagem e o texto
-                        Text(
+                        const Text(
                           'Ovos de \nColher',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -227,7 +230,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   //trufados
@@ -248,10 +251,10 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset('assets/exemplo.png'),
-                        SizedBox(
+                        const SizedBox(
                             height:
                                 0), // espaço vertical entre a imagem e o texto
-                        Text(
+                        const Text(
                           '\nTrufados',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -264,7 +267,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Row(
@@ -276,17 +279,17 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MiniEggsScreen(),
+                          builder: (context) => const MiniEggsScreen(),
                         ),
                       ),
                     },
                     child: Column(
                       children: [
                         Image.asset('assets/exemplo.png'),
-                        SizedBox(
+                        const SizedBox(
                             height:
                                 0), // espaço vertical entre a imagem e o texto
-                        Text(
+                        const Text(
                           '\nMini Ovos',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -297,7 +300,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   //barra recheada
@@ -309,10 +312,10 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset('assets/barraRecheada.png'),
-                        SizedBox(
+                        const SizedBox(
                             height:
                                 0), // espaço vertical entre a imagem e o texto
-                        Text(
+                        const Text(
                           'Barra \nRecheada',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -325,7 +328,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               //copo da felicidade
@@ -340,10 +343,10 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset('assets/copoFelicidade.png'),
-                        SizedBox(
+                        const SizedBox(
                             height:
                                 0), // espaço vertical entre a imagem e o texto
-                        Text(
+                        const Text(
                           'Copo da \nFelicidade',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -354,7 +357,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   //brigadeiros
@@ -363,10 +366,10 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset('assets/brigadeiros.png'),
-                        SizedBox(
+                        const SizedBox(
                             height:
                                 0), // espaço vertical entre a imagem e o texto
-                        Text(
+                        const Text(
                           '\nBrigadeiros',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -379,7 +382,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Row(
@@ -394,10 +397,10 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset('assets/capsulaChocolateCapp.png'),
-                        SizedBox(
+                        const SizedBox(
                             height:
                                 0), // espaço vertical entre a imagem e o texto
-                        Text(
+                        const Text(
                           'Cápsula de\nChocolate com\nCappuccino',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -409,7 +412,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
                   InkWell(
@@ -420,10 +423,10 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset('assets/bah1.png'),
-                        SizedBox(
+                        const SizedBox(
                             height:
                                 0), // espaço vertical entre a imagem e o texto
-                        Text(
+                        const Text(
                           '\n\n---------------',
                           style: TextStyle(
                             fontWeight: FontWeight.w700,

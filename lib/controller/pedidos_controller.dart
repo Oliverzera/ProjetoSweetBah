@@ -9,7 +9,8 @@ class PedidoController {
   void adicionar(context, Pedido p) {
     FirebaseFirestore.instance
         .collection('pedido')
-        .add(p.toJson())
+        .doc(p.uid)
+        .set(p.toJson())
         .then((value) => sucesso(context, 'Pedido adicionado com sucesso'))
         .catchError((e) => erro(context, 'ERRO: ${e.code.toString()}'))
         .whenComplete(() => Navigator.of(context).pop());

@@ -29,13 +29,13 @@ class _LoginPageState extends State<LoginPage> {
         isAdmin = true;
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => AdminHomePage()),
+          MaterialPageRoute(builder: (context) => const AdminHomePage()),
         );
       } else {
         isAdmin = false;
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
         mensagem(context, "Acesso negado");
       }
@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Container(
         //configura o posicionamento do container
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 60,
           left: 40,
           right: 40,
@@ -67,9 +67,9 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 128,
               height: 128,
-              child: Image.asset('logo.png'),
+              child: Image.asset('assets/logo.png'),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             //entrada do email do usuário
@@ -77,14 +77,14 @@ class _LoginPageState extends State<LoginPage> {
               controller: txtEmail,
               //coloca o @ no teclado celular quando o usuário clicar pra informar algo
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   labelText: "E-mail",
                   labelStyle: TextStyle(
                     color: Colors.black38,
                     fontWeight: FontWeight.w400,
                     fontSize: 20,
                   )),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
               onChanged: (value) {
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                 }
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //campo de senha -> deixa a senha em modo obscuro se o usuário clicar no ícone
@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: _obscureText,
               decoration: InputDecoration(
                 labelText: "Senha",
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Colors.black38,
                   fontWeight: FontWeight.w400,
                   fontSize: 20,
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
               //validando se é a senha do admin
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
               height: 40,
               alignment: Alignment.centerRight,
               child: TextButton(
-                child: Text(
+                child: const Text(
                   //botão de recuperação de senha -> o usuário é levado para outra tela do app
                   "Recuperar Senha",
                   style: TextStyle(
@@ -150,20 +150,20 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ResetPasswordPage(),
+                      builder: (context) => const ResetPasswordPage(),
                     ),
                   );
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Container(
               //botão de confirmação de login
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AdminHomePage(),
+                            builder: (context) => const AdminHomePage(),
                           ),
                         ),
                       }
@@ -217,13 +217,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Container(
               child: TextButton(
                 //botão qque encaminhará o usuário para outra tela
-                child: Text(
+                child: const Text(
                   "Cadastre-se",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -235,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SignupPage(),
+                      builder: (context) => const SignupPage(),
                     ),
                   ),
                 },

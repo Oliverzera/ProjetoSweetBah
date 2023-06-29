@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../pages/util.dart';
+import '../pages/login.page.dart';
 
 class LoginController {
   //
@@ -15,28 +16,32 @@ class LoginController {
       email: email,
       password: senha,
     )
-        .then((resultado) {
-      //Conta Criada com Sucesso
-      FirebaseFirestore.instance.collection('usuarios').add({
-        'uid': resultado.user!.uid,
-        'nome': nome,
-        'celular': celular,
+        .then((result) async {
+      FirebaseFirestore.instance
+          .collection('usuarios')
+          .doc(result.user!.uid)
+          .set(
+        {
+          'uid': result.user!.uid,
+          'nome': nome,
+          'celular': celular,
+        },
+      ).then((value) {
+        sucesso(context, 'Conta criada com sucesso!');
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+      }).catchError((e) {
+        switch (e.code) {
+          case 'email-already-in-use':
+            erro(context, 'O email já foi cadastrado.');
+            break;
+          case 'invalid-email':
+            erro(context, 'O formato do email é inválido.');
+            break;
+          default:
+            erro(context, 'ERRO: ${e.code.toString()}');
+        }
       });
-
-      sucesso(context, 'Usuário criado com sucesso.');
-      Navigator.pop(context);
-    }).catchError((e) {
-      //Não foi possível criar a conta
-      switch (e.code) {
-        case 'email-already-in-use':
-          erro(context, 'O email já foi cadastrado.');
-          break;
-        case 'invalid-email':
-          erro(context, 'O formato do email é inválido.');
-          break;
-        default:
-          erro(context, 'ERRO: ${e.code.toString()}');
-      }
     });
   }
 
@@ -102,6 +107,7 @@ class LoginController {
   //
   // NOME do Usuário Logado
   //
+
   Future<String> usuarioLogado() async {
     var usuario = '';
     await FirebaseFirestore.instance
@@ -114,5 +120,20 @@ class LoginController {
       },
     );
     return usuario;
+  }
+
+  Future<String> mudarNome(context, newName) async {
+    var newUsername = newName;
+    var userId = await idUsuario();
+
+    FirebaseFirestore.instance
+        .collection('usuarios')
+        .doc(userId)
+        .set({'nome': newUsername}, SetOptions(merge: true)).then((result) {
+      sucesso(context, 'Nome atualizado com sucesso!');
+      Navigator.of(context).pop();
+    }).catchError((e) => erro(context, 'Erro na atualização'));
+
+    return newUsername;
   }
 }

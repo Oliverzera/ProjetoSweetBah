@@ -1,5 +1,4 @@
 import 'package:app_avaliacao/controller/login_controller.dart';
-import 'package:app_avaliacao/pages/cadastral_changes.page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '/pages/home.page.dart';

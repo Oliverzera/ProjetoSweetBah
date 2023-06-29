@@ -29,7 +29,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 10,
           left: 40,
           right: 40,
@@ -40,12 +40,12 @@ class _SignupPageState extends State<SignupPage> {
             Container(
               width: 200,
               height: 200,
-              alignment:
-                  Alignment(0.0, 1.15), // -> alinhamento do container filho
+              alignment: const Alignment(
+                  0.0, 1.15), // -> alinhamento do container filho
               //coloco um container com uma imagm de fundo
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: AssetImage(
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                  image: const AssetImage(
                       "assets/profile-picture.png"), //pega a altura da pagina
                   fit: BoxFit.fitHeight,
                 ),
@@ -56,7 +56,7 @@ class _SignupPageState extends State<SignupPage> {
                 width: 56,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     stops: [0.3, 1.0],
@@ -71,13 +71,13 @@ class _SignupPageState extends State<SignupPage> {
                     width: 4.0,
                     color: const Color(0xFFFFFFFF),
                   ),
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(56),
                   ),
                 ),
                 child: SizedBox.expand(
                   child: TextButton(
-                    child: Icon(
+                    child: const Icon(
                       Icons.add,
                       color: Colors.white,
                     ),
@@ -86,14 +86,14 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             //campo nome
             TextFormField(
               controller: txtNome,
               keyboardType: TextInputType.text,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Nome",
                 labelStyle: TextStyle(
                   color: Colors.black38,
@@ -101,11 +101,11 @@ class _SignupPageState extends State<SignupPage> {
                   fontSize: 20,
                 ),
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //campo email
@@ -113,7 +113,7 @@ class _SignupPageState extends State<SignupPage> {
               controller: txtEmail,
               //aparecer o @ como padrão no teclado
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "E-mail",
                 labelStyle: TextStyle(
                   color: Colors.black38,
@@ -121,18 +121,18 @@ class _SignupPageState extends State<SignupPage> {
                   fontSize: 20,
                 ),
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //campo senha
             TextFormField(
               controller: txtSenha,
               keyboardType: TextInputType.text,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Senha",
                 labelStyle: TextStyle(
                   color: Colors.black38,
@@ -141,7 +141,7 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
               //verificação da senha
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
               onChanged: (value) => _password = value,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -153,14 +153,14 @@ class _SignupPageState extends State<SignupPage> {
                 return null;
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //campo de confirmação de senha
             TextFormField(
               controller: txtSenhaConfirmacao,
               keyboardType: TextInputType.text,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Confirme sua senha",
                 labelStyle: TextStyle(
                   color: Colors.black38,
@@ -168,7 +168,7 @@ class _SignupPageState extends State<SignupPage> {
                   fontSize: 20,
                 ),
               ),
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
               onChanged: (value) => _confirmPassword = value,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -180,14 +180,14 @@ class _SignupPageState extends State<SignupPage> {
                 return null;
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //campo celular
             TextFormField(
               controller: txtCelular,
               keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Celular",
                 labelStyle: TextStyle(
                   color: Colors.black38,
@@ -195,16 +195,16 @@ class _SignupPageState extends State<SignupPage> {
                   fontSize: 20,
                 ),
               ),
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             //botão de confirmação do cadastro
             Container(
               height: 50,
               alignment: Alignment.centerLeft,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -221,7 +221,7 @@ class _SignupPageState extends State<SignupPage> {
               //pega o container todo
               child: SizedBox.expand(
                 child: TextButton(
-                  child: Text(
+                  child: const Text(
                     "Cadastrar",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -238,18 +238,11 @@ class _SignupPageState extends State<SignupPage> {
                       txtSenha.text,
                       txtCelular.text,
                     ),
-                    Navigator.pop(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(),
-                      ),
-                    ),
-                    //mensagem(context, "Cadastro realizado com sucesso!")
                   },
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             //botão de cancelamento de cadastro
@@ -257,7 +250,7 @@ class _SignupPageState extends State<SignupPage> {
               height: 40,
               alignment: Alignment.center,
               child: TextButton(
-                child: Text(
+                child: const Text(
                   "Cancelar",
                   textAlign: TextAlign.center,
                 ),
